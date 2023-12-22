@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -49,15 +50,16 @@ public class MainActivity2 extends AppCompatActivity {
 
         btn_send = findViewById(R.id.btn_send);
         btn_send.setOnClickListener(view -> {
-            set_drink = findViewById((R.id.ed_drink);
+            set_drink = findViewById(R.id.ed_drink);
             String drink = set_drink.getText().toString();
             Intent i = new Intent();
             Bundle b = new Bundle();
-            b.putString("drink", drink);
-            b.putString("sugar", sugar);
-            b.putString("ice", ice_opt);
+            b.putString("Drink", drink);
+            b.putString("Sugar", sugar);
+            b.putString("Ice", ice_opt);
             i.putExtras(b);
             setResult(Activity.RESULT_OK, i);
+            finish();
 
         });
     }

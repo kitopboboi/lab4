@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -23,24 +24,25 @@ public class MainActivity extends AppCompatActivity {
         btn_select = findViewById(R.id.btn_choice);
         btn_select.setOnClickListener(view -> {
             mStartForResult.launch(
-              new Intent(this, MainActivity.class)
+              new Intent(this, MainActivity2.class)
 
             );
         });
     }
 
-    private final ActivityResultLauncher<Intent> mStarFoResult =
+    private final ActivityResultLauncher<Intent> mStartForResult =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+                Log.e("mStartForResult", "mStartForResult");
                 if(result.getResultCode() == Activity.RESULT_OK) {
                     Intent intent = result.getData();
-
-                    if(intent != null && getIntent().getExtras() != null) {
+                    Log.e("RESULT_OK", "RESULT_OK");
+                    if(intent != null && intent.getExtras() != null) {
                         Bundle b = intent.getExtras();
                         String str1 = b.getString("Drink");
                         String str2 = b.getString("Sugar");
                         String str3 = b.getString("Ice");
                         tv_meal.setText(String.format("Drinks: %s\n\nSweetness: %s\n\nIce: %s", str1, str2, str3));
-                        }
                     }
-                });
-            }
+                }
+            });
+}
